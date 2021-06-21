@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<div th:replace="component/header :: myheader"></div>
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:replace="component/navbar :: mynavbar"></div>
+	<div class="jumbotron text-center" style="margin: auto;">
+		<div>
+			<h1>Registration</h1>
+		</div>
+		<form
+			th:action="@{/trip/createEdit}"
+			method="post"
+			th:object="${trip}">
+			<div>
+				<div class="input-group mb-3">
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">City of Departure:</label>
+							<div class="col-8">
+								<input type="text" 
+								class="form-control" 								
+								th:field="*{cityDeparture}" 
+								minlength="2"
+								maxlength="40"
+								required/>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">City of Arrival:</label>
+							<div class="col-8">
+								<input type="text" 
+									class="form-control" 
+									th:field="*{cityArrival}" 
+									minlength="2"
+									maxlength="40"
+									required/>
+							</div>
+						</div>
+					</div>
+				  
+				</div>
+				<div class="input-group mb-3">
+					<div class="col-6">
+					<div class="form-group row">
+							<label class="col-form-label col-4">Address of Departure:</label>
+							<div class="col-8">
+								<input type="text" 
+									class="form-control" 
+									th:field="*{addressDeparture}" 
+									minlength="2"
+									maxlength="40"
+									required/>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">Address of Arrival:</label>
+							<div class="col-8">
+								<input type="text" 
+									class="form-control" 
+									th:field="*{addressArrival}" 
+									minlength="2"
+									maxlength="40"
+									required/>
+							</div>
+						</div>
+					</div>
+				  
+				</div>
+				<div class="input-group mb-3">
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">Hour Of Departure:</label>
+							<div class="col-8">
+								<input type="time" 
+									class="form-control"
+									th:field="*{hourDeparture}" 
+									required/>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">Hour of Arrival:</label>
+							<div class="col-8">
+								<input type="time" 
+									class="form-control" 
+									th:field="*{hourArrival}" 
+									required/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="input-group mb-3">
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">Seats:</label>
+							<div class="col-8">
+								<input type="number" 
+									class="form-control"
+									th:field="*{seats}" 
+									minlength="1"
+									maxlength="2"
+									required/>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div class="form-group row">
+							<label class="col-form-label col-4">Price:</label>
+							<div class="col-8">
+								<input type="number" 
+									class="form-control" 
+									th:field="*{price}" 
+									minlength="1"
+									maxlength="2"
+									required/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<input id="tripId" th:field="*{id}" hidden>
+				<div class="text-centered" >
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	
+	<div th:replace="component/footer :: footer"></div>
+	
+</body>
+</html>

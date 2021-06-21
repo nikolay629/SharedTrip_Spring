@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<div th:replace="component/header :: myheader"></div>
+	<title>Trips List</title>
+	<style>
+		.title {
+			text-align: center;
+		}
+		.title-italic {
+			text-align: center;
+			font-style: bold;
+		}
+		.price {
+			font-style: italic;
+		}
+		.right {
+			float: right;
+		}
+		.border {
+			background-color: aqua;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div th:replace="component/navbar :: mynavbar"></div>
+	<div class="jumbotron" style="margin: auto;">
+		<div class="text-center">
+			<h1 style="font-family: Engravers MT;" th:text="${title}"></h1>
+			<hr/>
+		</div>
+		<div class="row" >
+			<div class="card  col-sm-12 col-md-6 col-xl-4" style="background-color: #ccffff" th:each="trip: ${listTrips}">
+			  <div class="card-body">
+			    <h5 class="card-title title" 
+			    	th:text="${trip.trip.user.firstName} + ' ' + ${trip.trip.user.lastName}">
+			    </h5>
+			    <div class="input-group border">
+			    	<div class="col-12 title" >
+			    		<label th:text="Departure" ></label>
+			    	</div>
+			    	<div class="col-9">
+			    		<label th:text="${trip.trip.cityDeparture} + ' - ' + ${trip.trip.addressDeparture} + ' :'"></label>
+			    	</div>
+			    	<div class="col-3 ">
+			    		<label th:text="${trip.trip.hourDeparture}" ></label>
+			    	</div>
+			    </div>
+			    <div class="input-group border">
+			    	<div class="col-12 title" >
+			    		<label th:text="Arrival"></label>
+			    	</div>
+			    	<div class="col-9">
+			    		<label th:text="${trip.trip.cityArrival} + ' - ' + ${trip.trip.addressArrival} + ' :'"></label>
+			    	</div>
+			    	<div class="col-3 ">
+			    		<label th:text="${trip.trip.hourArrival}" ></label>
+			    	</div>
+			    </div>
+			    <div class="input-group">
+			    	<div class="col-6"> 
+				    	<label class="card-text  text-muted price" 
+					    	th:text="'Seats: ' + ${trip.trip.seats}">
+					    </label>
+				    </div>
+				    <div class="col-6 "> 
+				    	<label class="card-text right text-muted price" 
+					    	th:text="'Price: ' + ${trip.trip.price}">
+					    </label>
+				    </div>
+			    </div>
+			    <div class="text-center">
+			    	<form th:action="@{/list-trip-applied-confirmed/refuse/} + ${trip.id}" method="get">
+			    	<button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure!')">Refuse</button>
+			    	</form>	
+			    </div>
+			  </div>
+			</div>		
+		</div>
+	</div>
+	
+	<div th:replace="component/footer :: footer"></div>
+	
+</body>
+</html>

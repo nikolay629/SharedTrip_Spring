@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<div th:replace="component/header :: myheader"></div>
+	<title>Insert title here</title>
+	<style>
+		.jumbotron{ margin:auto; }
+		.container{
+			 background-color: #b5bfc9;
+			 border-radius: 12px;
+			 padding: 15px;
+		}
+		.input-group{
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div th:replace="component/navbar :: mynavbar"></div>
+	
+	<div class="jumbotron ">
+		<div class="row">
+			<div class="container">
+				<form th:action="@{/list-trip}" method="get"  th:object="${search}" >
+					<div class="input-group ">
+						<div class="col-12 text-center">
+						<h2 class="">Search</h2>
+						</div>
+					</div>
+					<div class="input-group">
+						<div class="col-12">
+							<label>User</label>
+							<select th:field="*{username}" class="form-control">
+								<option value="all" selected>All</option>
+								<option th:each="username: ${usernames}" th:value="${username}" th:text="${username}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="input-group">
+						<div class="col-6">
+							<label>City of Departure</label>
+							<select th:field="*{cityDeparture}"  class="form-control">
+								<option value="all" selected>All</option>
+								<option th:each="city: ${cityDepartures}" th:value="${city}" th:text="${city}"></option>
+							</select>
+						</div>
+						<div class="col-6">
+							<label>Hour of Departure</label>
+							<input type="time" th:field="*{hourDeparture}"  class="form-control">
+						</div>
+					</div>
+					<div class="input-group">
+						<div class="col-6">
+							<label>City of Arrival</label>
+							<select th:field="*{cityArrival}"  class="form-control">
+								<option value="all" selected>All</option>
+								<option th:each="city: ${cityArrivals}" th:value="${city}" th:text="${city}"></option>
+							</select>
+						</div>
+						<div class="col-6">
+							<label>Hour of Arrival</label>
+							<input type="time" th:field="*{hourArrival}" class="form-control">
+						</div>
+					</div>
+					<div class="input-group">
+						<div class="col-12">
+							<button type="submit"  class="btn btn-primary form-control">Search</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div th:replace="component/footer :: footer"></div>
+</body>
+</html>
